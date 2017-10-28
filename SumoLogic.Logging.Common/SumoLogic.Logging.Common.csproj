@@ -42,8 +42,17 @@
     <!--I added this because line 137 in SumoLogicMessageSender, checks for a WebException long term we shouldn't use this-->
     <!--The comments of the nuget package say Developers should prefer the classes in the System.Net.Http package. -->
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />
+     <PackageReference Include="SourceLink.Create.CommandLine" Version="2.4.0" PrivateAssets="All" /> 
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+  <PropertyGroup>
+      <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
+    </PropertyGroup>
+    <Target Name="IncludePDBsInPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
+      <ItemGroup>
+        <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).pdb" PackagePath="lib\$(TargetFramework)" />
+      </ItemGroup>
+  </Target>
+    <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <Reference Include="System.Net.Http" />
   </ItemGroup>
 </Project>
