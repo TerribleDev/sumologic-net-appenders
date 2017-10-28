@@ -9,6 +9,7 @@
     <CodeAnalysisRuleSet>..\Settings.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <Prefer32Bit>false</Prefer32Bit>
+    <SourceLinkServerType>GitHub</SourceLinkServerType>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>SumoLogic.Logging.Common</PackageId>
